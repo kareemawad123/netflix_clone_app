@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>334113013168-mvto5tev5mh1bgc526dmah7b847552fm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.334113013168-mvto5tev5mh1bgc526dmah7b847552fm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDqM3NsXnmwY-w0FWW9b3n_tDF-1ZI6i4Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>334113013168</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.netflixCloneApp</string>
+	<key>PROJECT_ID</key>
+	<string>netflix-clone-64778</string>
+	<key>STORAGE_BUCKET</key>
+	<string>netflix-clone-64778.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:334113013168:ios:8b174565326b510c70ea75</string>
+	<key>DATABASE_URL</key>
+	<string>https://netflix-clone-64778-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
