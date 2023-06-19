@@ -49,9 +49,10 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                 return Container(
                   height: height,
                   width: double.infinity,
-                  color: Colors.lightBlueAccent,
+                  color: primaryColors,
                 );
               }),
+          // AppBar
           Positioned(
             top: 0,
             child: Container(
@@ -78,14 +79,15 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                       onPressed: () {},
                       style: TextButton.styleFrom(
                         // backgroundColor: Colors.grey,
-                        padding: const EdgeInsets.only(top: 0, right: 7, left: 0, bottom: 0),
+                        padding: const EdgeInsets.only(
+                            top: 0, right: 7, left: 0, bottom: 0),
                       ),
                       child: const Text(
                         'PRIVACY',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 12),
+                            fontSize: 15),
                       )),
                   TextButton(
                       onPressed: () {},
@@ -99,15 +101,14 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                             color: Colors.white,
                             // backgroundColor: Colors.teal,
                             fontWeight: FontWeight.bold,
-                            fontSize: 12),
+                            fontSize: 15),
                       )),
                   IconButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
-                        // backgroundColor: Colors.red,
-                        padding: EdgeInsets.zero,
-                        minimumSize: const Size.fromRadius(15)
-                      ),
+                          // backgroundColor: Colors.red,
+                          padding: EdgeInsets.zero,
+                          minimumSize: const Size.fromRadius(15)),
                       iconSize: 20,
                       icon: const Icon(
                         Icons.more_vert,
@@ -116,13 +117,34 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
               ),
             ),
           ),
+          // Indicators
           Positioned(
             bottom: height * 0.1,
-            left: width * 0.45,
+            left: width * 0.4,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: indicators(imgList.length, activePage)),
-          )
+          ),
+          Positioned(
+              bottom: 0,
+              child: Container(
+                margin: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                width: width*0.925,
+                height: height*0.06,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    backgroundColor: quaternaryColors,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: const Text('Get Started',style: TextStyle(
+                    fontSize: 18
+                  ),),
+                ),
+              ))
         ]),
       ),
     );
@@ -132,11 +154,11 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
 List<Widget> indicators(imagesLength, currentIndex) {
   return List<Widget>.generate(imagesLength, (index) {
     return Container(
-      margin: EdgeInsets.all(3),
+      margin: const EdgeInsets.all(3),
       width: 10,
       height: 10,
       decoration: BoxDecoration(
-          color: currentIndex == index ? Colors.red : Colors.black26,
+          color: currentIndex == index ? Colors.red : Colors.grey,
           shape: BoxShape.circle),
     );
   });
