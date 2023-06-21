@@ -1,6 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:netflix_clone_app/Model/constants.dart';
 
