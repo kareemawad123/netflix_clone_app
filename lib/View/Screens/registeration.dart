@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:netflix_clone_app/View/Screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
+import 'package:netflix_clone_app/View/Screens/login.dart';
 
-class Registeration extends StatefulWidget {
-  Registeration({super.key});
+class Registration extends StatefulWidget {
+  Registration({super.key});
 
   @override
-  State<Registeration> createState() => _RegisterationState();
+  State<Registration> createState() => _RegistrationState();
 }
 
-class _RegisterationState extends State<Registeration> {
-  var email = TextEditingController();
-  var _password = TextEditingController();
+class _RegistrationState extends State<Registration> {
+  var _emailController = TextEditingController();
+  var _passwordController = TextEditingController();
   var _passwdVisible = true;
   bool checkBoxValue = false;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
@@ -33,7 +33,9 @@ class _RegisterationState extends State<Registeration> {
         ),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(HelpScreen());
+              },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
               ),
@@ -60,154 +62,163 @@ class _RegisterationState extends State<Registeration> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Form(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      "Ready to experience unlimited TV shows & movies?",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Create an account and we'll send you an email with everything you need to know about Netflix.",
-                      style: TextStyle(),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: Colors.grey),
-                          top: BorderSide(color: Colors.grey),
-                          left: BorderSide(color: Colors.grey),
-                          right: BorderSide(color: Colors.grey),
-                        ),
-                      ),
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.white,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          labelText: "Email",
-                          filled: true,
-                          fillColor: Colors.white,
-                          labelStyle: TextStyle(color: Colors.grey),
-                        ),
-                        controller: email,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: Colors.grey),
-                          top: BorderSide(color: Colors.grey),
-                          left: BorderSide(color: Colors.grey),
-                          right: BorderSide(color: Colors.grey),
-                        ),
-                      ),
-                      child: TextFormField(
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: _passwdVisible,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        style: TextStyle(color: Colors.black),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Password is required!';
-                          } else if (value.length <= 6) {
-                            return 'Your password should be between 6 and 60 characters';
-                          } else {
-                            return null;
-                          }
-                        },
-                        cursorColor: Colors.white,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          labelText: "Password",
-                          filled: true,
-                          fillColor: Colors.white,
-                          labelStyle: TextStyle(color: Colors.grey),
-                        ),
-                        controller: _password,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CheckboxListTile(
-                      value: checkBoxValue,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          checkBoxValue = value!;
-                        });
-                      },
-                      title: Text(
-                          "Please do not email me Netflix special offers."),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    MaterialButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          try {
-                            await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                                    email: email.text,
-                                    password: _password.text);
-                            // Get.to( ());
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == 'user-not-found') {
-                              print('No user found for that email.');
-                            } else if (e.code == 'wrong-password') {
-                              print('Wrong password provided for that user.');
-                            }
-                          }
-                        }
-                      },
-                      child: Text("CONTINUE"),
-                      color: Colors.red,
-                      hoverColor: Color.fromARGB(255, 223, 101, 93),
-                      minWidth: double.infinity,
-                      height: 60,
-                      // shape: Border(
-                      //   bottom: BorderSide(
-                      //       color: Colors.red),
-                      //   top: BorderSide(
-                      //       color: Colors.red),
-                      //   left: BorderSide(
-                      //       color: Colors.red),
-                      //   right: BorderSide(
-                      //       color: Colors.red),
-                      // ),
-                      textColor: Colors.white,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ],
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
                 ),
-              ),
+                Text(
+                  "Ready to experience unlimited TV shows & movies?",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Create an account and we'll send you an email with everything you need to know about Netflix.",
+                  style: TextStyle(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  style: TextStyle(color: Colors.black),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Email is required!';
+                    } else if (value.length < 5) {
+                      InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red)));
+                      return 'Your Email should be between 5 and 60 characters';
+                    } else {
+                      return null;
+                    }
+                  },
+                  cursorColor: const Color.fromARGB(255, 100, 100, 100),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                    hintText: "Email",
+                    filled: true,
+                    fillColor: Colors.white,
+                    labelStyle: TextStyle(color: Colors.grey),
+                  ),
+                  controller: _emailController,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: _passwdVisible,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  style: TextStyle(color: Colors.black),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Password is required!';
+                    } else if (value.length < 6) {
+                      InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red)));
+                      return 'Your password should be between 6 and 60 characters';
+                    } else {
+                      return null;
+                    }
+                  },
+                  cursorColor: const Color.fromARGB(255, 100, 100, 100),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                    hintText: "Password",
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusColor: Colors.blue,
+                    labelStyle: TextStyle(color: Colors.grey),
+                  ),
+                  controller: _passwordController,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CheckboxListTile(
+                  value: checkBoxValue,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      checkBoxValue = value!;
+                    });
+                  },
+                  title: Text("Please do not email me Netflix special offers."),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                MaterialButton(
+                  onPressed: () async {
+                    // print(email.text +
+                    //     checkBoxValue.toString() +
+                    //     _password.text);
+                    if (_formKey.currentState!.validate()) {
+                      try {
+                        await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+                        Get.to(logIn());
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          print('The password provided is too weak.');
+                        } else if (e.code == 'email-already-in-use') {
+                          print('The account already exists for that email.');
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
+                    }
+                  },
+                  child: Text("CONTINUE"),
+                  color: Colors.red,
+                  hoverColor: Color.fromARGB(255, 223, 101, 93),
+                  minWidth: double.infinity,
+                  height: 60,
+                  textColor: Colors.white,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
           ),
         ),

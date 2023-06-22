@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:netflix_clone_app/View/Screens/home.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
+import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
 class logIn extends StatefulWidget {
   logIn({super.key});
@@ -163,7 +162,7 @@ class _MyWidgetState extends State<logIn> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to(PreHomeScreen());
+                    Get.to(Registration());
                   },
                   child: Text(
                     "New to Netflix? Sign up now",

@@ -144,19 +144,11 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                             top: Radius.circular(0),
                           ),
                         ),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        clipBehavior: Clip.antiAlias,
                         isScrollControlled: true,
                         isDismissible: true,
                         builder: (BuildContext context) {
-                          return DraggableScrollableSheet(
-                              initialChildSize: 0.75, //set this as you want
-                              maxChildSize: 0.75, //set this as you want
-                              minChildSize: 0.75,
-                              //set this as you want
-                              expand: true,
-                              builder: (context, scrollController) {
-                                return BottomSheetExample(); //whatever you're returning, does not have to be a Container
-                              });
+                          return BottomSheetExample();
                         });
                   },
                   style: TextButton.styleFrom(
