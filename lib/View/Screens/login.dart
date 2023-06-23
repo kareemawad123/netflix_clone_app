@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
 import 'package:netflix_clone_app/View/Screens/HomeScreenN.dart';
-import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
 import '../../Model/constants.dart';
@@ -26,7 +25,6 @@ class _MyWidgetState extends State<Login> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -132,9 +130,7 @@ class _MyWidgetState extends State<Login> {
                           },
                         );
                       },
-                      icon: Icon(_passwdVisible
-                          ? Icons.visibility_off
-                          : Icons.visibility),
+                      icon: Text(_passwdVisible ? "SHOW" : "HIDDEN"),
                     ),
                   ),
                   controller: _password,
@@ -150,15 +146,12 @@ class _MyWidgetState extends State<Login> {
                             .signInWithEmailAndPassword(
                                 email: email.text, password: _password.text)
                             .then((value) {
-                          Get.snackbar(
-                              'Login',
-                              'Login Successfully',
+                          Get.snackbar('Login', 'Login Successfully',
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: secondaryColors,
-                              colorText: quaternaryColors
-                          );
+                              colorText: quaternaryColors);
                           Get.to(const HomeScreenN());
-                          });
+                        });
                         // Get.to(PreHomeScreen());
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {

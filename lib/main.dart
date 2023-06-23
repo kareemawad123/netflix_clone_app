@@ -9,7 +9,7 @@ import 'package:netflix_clone_app/View/Screens/users.dart';
 import 'Controller/scroll_controller.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   Get.put(SController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -20,7 +20,6 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({super.key});
 
   // This widget is the root of your application.
