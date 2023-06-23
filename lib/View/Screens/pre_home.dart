@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:netflix_clone_app/Model/constants.dart';
 import 'package:netflix_clone_app/View/Screens/getStartPage.dart';
 import 'package:netflix_clone_app/View/reusable_widgets/prehome_image.dart';
+import 'package:expandable_page_view/expandable_page_view.dart';
 
 import 'login.dart';
 
@@ -37,6 +38,32 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
     Colors.amberAccent,
     Colors.indigoAccent
   ];
+  List preHome = [
+    {
+      'img':
+          'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+      'str1': 'Unlimited movies, TV shows & more.',
+      'str2': 'Watch anywhere. Cancel anytime.',
+    },
+    {
+      'img':
+      'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+      'str1': "There's. a plan for every fan",
+      'str2': 'Plans start at EGP70.',
+    },
+    {
+      'img':
+      'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+      'str1': 'Cancel online anytime.',
+      'str2': 'Join today, no reason to wait.',
+    },
+    {
+      'img':
+      'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+      'str1': 'Watch everywhere.',
+      'str2': 'Stream on your phone, tablet, laptop and TV.',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,19 +73,23 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
     return SafeArea(
       child: Scaffold(
         body: Stack(children: <Widget>[
-          PageView.builder(
-              itemCount: imgList.length,
-              pageSnapping: false,
-              controller: _pageController,
-              padEnds: false,
-              onPageChanged: (page) {
-                setState(() {
-                  activePage = page;
-                });
-              },
-              itemBuilder: (context, pagePosition) {
-                return  CustomPreHomeBG(color: colors[pagePosition],);
-              }),
+          ExpandablePageView.builder(
+            onPageChanged: (value) {
+              print(value);
+
+              setState(() {
+                activePage = value;
+              });
+            },
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return CustomPreHomeBG(
+                color: colors[index],
+                str1: preHome[index]['str1'],
+                str2: preHome[index]['str2'],
+              );
+            },
+          ),
           // AppBar
           Positioned(
             top: 0,
@@ -98,7 +129,7 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                       )),
                   TextButton(
                       onPressed: () {
-                        Get.to(logIn());
+                        Get.to(const Login());
                       },
                       style: TextButton.styleFrom(
                         // backgroundColor: Colors.red,
@@ -157,7 +188,6 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                         builder: (BuildContext context) {
                           return const BottomSheetExample();
                         });
-
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: quaternaryColors,

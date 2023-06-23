@@ -10,14 +10,14 @@ import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
 import '../../Model/constants.dart';
 
-class logIn extends StatefulWidget {
-  const logIn({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<logIn> createState() => _MyWidgetState();
+  State<Login> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<logIn> {
+class _MyWidgetState extends State<Login> {
   var email = TextEditingController();
   var _password = TextEditingController();
   var _passwdVisible = true;

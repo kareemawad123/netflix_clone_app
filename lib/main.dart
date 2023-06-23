@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:netflix_clone_app/View/Screens/HomeScreenN.dart';
+import 'package:netflix_clone_app/View/Screens/login.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/users.dart';
 import 'Controller/scroll_controller.dart';

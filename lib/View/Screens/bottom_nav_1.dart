@@ -16,11 +16,19 @@ class HomeIndex1 extends StatefulWidget {
 }
 
 class _HomeIndex1State extends State<HomeIndex1> {
-  // final ScrollController controller = ScrollController();
-  bool _showNavBar = true;
   late List movies;
   bool isLoad = true;
   String preLinkImg = 'https://image.tmdb.org/t/p/w500/';
+  List sliderTitles = [
+    'My List',
+    'Popular on Netflix',
+    'Trending Now',
+    'Swoonworthy TV Shows',
+    'Exciting Revenge TV Shows',
+    'Empowered Women',
+    'New Releases',
+    'Only on Netflix',
+  ];
 
   void getMovies() async {
     movies = await MoviesCore.setMovies();
@@ -32,11 +40,11 @@ class _HomeIndex1State extends State<HomeIndex1> {
   }
 
   final SController sC = Get.find();
+
   @override
   void initState() {
     super.initState();
     getMovies();
-
   }
 
   @override
@@ -64,24 +72,24 @@ class _HomeIndex1State extends State<HomeIndex1> {
                   child: Stack(
                     children: [
                       Container(
-                        height: height * 0.65,
-                        width: width,
-                        padding: EdgeInsets.zero,
-                        margin: EdgeInsets.zero,
-                        child: const Image(image: NetworkImage(
-                          'https://images.justwatch.com/poster/301078631/s592/wednesday.webp',
-                        ),
-                        )
-                      ),
+                          height: height * 0.65,
+                          width: width,
+                          padding: EdgeInsets.zero,
+                          margin: EdgeInsets.zero,
+                          child: const Image(
+                            image: NetworkImage(
+                              'https://images.justwatch.com/poster/301078631/s592/wednesday.webp',
+                            ),
+                          )),
                       Container(
                         height: height * 0.65,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            begin: const Alignment(0.4, 0.2),
+                            begin: const Alignment(1, 0),
                             end: Alignment.bottomCenter,
                             colors: [
                               Colors.transparent,
-                              tertiaryColors.withAlpha(210)
+                              tertiaryColors.withAlpha(220)
                             ],
                           ),
                         ),
@@ -138,9 +146,10 @@ class _HomeIndex1State extends State<HomeIndex1> {
                                     ),
                                     padding: EdgeInsets.zero,
                                   ),
-                                  child: const Text('Play',style: TextStyle(
-                                    fontSize: 18
-                                  ),),
+                                  child: const Text(
+                                    'Play',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                                 ),
                               ),
                               const Expanded(
@@ -167,17 +176,25 @@ class _HomeIndex1State extends State<HomeIndex1> {
                   ),
                 ),
                 customCWSlider(profileName: 'Kareem'),
-                customSlider(),
-                customSlider(),
-                customSlider(),
-                customSlider(),
-                customSlider(),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: sliderTitles.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return customSlider(title: sliderTitles[index]);
+                    }),
+                // customSlider(),
+                // customSlider(),
+                // customSlider(),
+                // customSlider(),
+                // customSlider(),
               ],
             ),
           );
   }
 
-  Widget customSlider() {
+  Widget customSlider({required String title}) {
     return Container(
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
       // height: 150,
@@ -188,10 +205,10 @@ class _HomeIndex1State extends State<HomeIndex1> {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(left: 10),
-            child: const Text(
-              'Trending Now',
+            child: Text(
+              title,
               textAlign: TextAlign.start,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -215,6 +232,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
       ),
     );
   }
+
   Widget customCWSlider({required String profileName}) {
     return Container(
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
@@ -226,7 +244,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(left: 10),
-            child:  Text(
+            child: Text(
               'Continue Watching for $profileName',
               textAlign: TextAlign.start,
               style: const TextStyle(

@@ -50,7 +50,7 @@ class _RegistrationState extends State<Registration> {
           ),
           TextButton(
               onPressed: () {
-                Get.to(logIn());
+                Get.to(Login());
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
@@ -205,7 +205,7 @@ class _RegistrationState extends State<Registration> {
                             backgroundColor: secondaryColors,
                             colorText: quaternaryColors
                           );
-                          Get.to(const logIn());
+                          Get.to(const Login());
                         });
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
