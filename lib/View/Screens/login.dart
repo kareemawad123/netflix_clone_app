@@ -1,8 +1,12 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
+import 'package:form_validation/form_validation.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
@@ -98,9 +102,7 @@ class _MyWidgetState extends State<logIn> {
                           },
                         );
                       },
-                      icon: Icon(_passwdVisible
-                          ? Icons.visibility_off
-                          : Icons.visibility),
+                      icon: Text(_passwdVisible ? "SHOW" : "HIDDEN"),
                     ),
                   ),
                   controller: _password,
@@ -125,7 +127,10 @@ class _MyWidgetState extends State<logIn> {
                     }
                   },
                   child: Text("Sign In"),
-                  color: Colors.black,
+                  color:
+                      // (_formKey.currentState!.validate() )
+                      // (email.text.isNotEmpty) ? Colors.red :
+                      Colors.black,
                   hoverColor: Colors.grey,
                   minWidth: double.infinity,
                   height: 60,
@@ -146,7 +151,7 @@ class _MyWidgetState extends State<logIn> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to("/");
+                    Get.to(HelpScreen());
                   },
                   child: Text(
                     "Need help?",
