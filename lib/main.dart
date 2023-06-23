@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
+import 'package:netflix_clone_app/View/Screens/registeration.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const PreHomeScreen(),
+      home:  Registration(),
     );
   }
 }

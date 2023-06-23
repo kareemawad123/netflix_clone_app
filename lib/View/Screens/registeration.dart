@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
 import 'package:netflix_clone_app/View/Screens/login.dart';
 
+import '../../Model/constants.dart';
+
 class Registration extends StatefulWidget {
   Registration({super.key});
 
@@ -209,7 +211,7 @@ class _RegistrationState extends State<Registration> {
                     }
                   },
                   child: Text("CONTINUE"),
-                  color: Colors.red,
+                  color: quaternaryColors,
                   hoverColor: Color.fromARGB(255, 223, 101, 93),
                   minWidth: double.infinity,
                   height: 60,

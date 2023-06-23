@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/registeration.dart';
+
+import '../../Model/constants.dart';
 
 class logIn extends StatefulWidget {
   logIn({super.key});
@@ -17,7 +20,15 @@ class _MyWidgetState extends State<logIn> {
   var email = TextEditingController();
   var _password = TextEditingController();
   var _passwdVisible = true;
+  bool valid = false;
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +64,17 @@ class _MyWidgetState extends State<logIn> {
                     focusColor: Color.fromARGB(255, 20, 20, 20),
                     labelStyle: TextStyle(color: Colors.grey),
                   ),
+                  onChanged: (value){
+                    if(_formKey.currentState!.validate()){
+                      setState(() {
+                        valid = true;
+                      });
+                    }else{
+                      setState(() {
+                        valid = false;
+                      });
+                    }
+                  },
                   controller: email,
                   style: TextStyle(color: Colors.white),
                   // autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -80,6 +102,17 @@ class _MyWidgetState extends State<logIn> {
                       return 'Your password must contain between 4 and 60 characters';
                     } else {
                       return null;
+                    }
+                  },
+                  onChanged: (value){
+                    if(_formKey.currentState!.validate()){
+                      setState(() {
+                        valid = true;
+                      });
+                    }else{
+                      setState(() {
+                        valid = false;
+                      });
                     }
                   },
                   cursorColor: Colors.white,
@@ -125,19 +158,19 @@ class _MyWidgetState extends State<logIn> {
                     }
                   },
                   child: Text("Sign In"),
-                  color: Colors.black,
+                  color: valid ? quaternaryColors : Colors.black,
                   hoverColor: Colors.grey,
                   minWidth: double.infinity,
                   height: 60,
-                  shape: Border(
+                  shape: const Border(
                     bottom: BorderSide(
-                        color: const Color.fromARGB(255, 126, 125, 125)),
+                        color: Color.fromARGB(255, 126, 125, 125)),
                     top: BorderSide(
-                        color: const Color.fromARGB(255, 126, 125, 125)),
+                        color: Color.fromARGB(255, 126, 125, 125)),
                     left: BorderSide(
-                        color: const Color.fromARGB(255, 126, 125, 125)),
+                        color: Color.fromARGB(255, 126, 125, 125)),
                     right: BorderSide(
-                        color: const Color.fromARGB(255, 126, 125, 125)),
+                        color: Color.fromARGB(255, 126, 125, 125)),
                   ),
                   textColor: Colors.white,
                 ),
@@ -146,7 +179,7 @@ class _MyWidgetState extends State<logIn> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to("/");
+                    Get.to(HelpScreen());
                   },
                   child: Text(
                     "Need help?",
