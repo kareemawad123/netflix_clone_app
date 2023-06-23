@@ -4,13 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
+import 'package:netflix_clone_app/View/Screens/HomeScreenN.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
 import '../../Model/constants.dart';
 
 class logIn extends StatefulWidget {
-  logIn({super.key});
+  const logIn({super.key});
 
   @override
   State<logIn> createState() => _MyWidgetState();
@@ -27,8 +28,8 @@ class _MyWidgetState extends State<logIn> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,12 +65,12 @@ class _MyWidgetState extends State<logIn> {
                     focusColor: Color.fromARGB(255, 20, 20, 20),
                     labelStyle: TextStyle(color: Colors.grey),
                   ),
-                  onChanged: (value){
-                    if(_formKey.currentState!.validate()){
+                  onChanged: (value) {
+                    if (_formKey.currentState!.validate()) {
                       setState(() {
                         valid = true;
                       });
-                    }else{
+                    } else {
                       setState(() {
                         valid = false;
                       });
@@ -104,12 +105,12 @@ class _MyWidgetState extends State<logIn> {
                       return null;
                     }
                   },
-                  onChanged: (value){
-                    if(_formKey.currentState!.validate()){
+                  onChanged: (value) {
+                    if (_formKey.currentState!.validate()) {
                       setState(() {
                         valid = true;
                       });
-                    }else{
+                    } else {
                       setState(() {
                         valid = false;
                       });
@@ -138,22 +139,34 @@ class _MyWidgetState extends State<logIn> {
                   ),
                   controller: _password,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 MaterialButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
-                            email: email.text, password: _password.text);
-                        Get.to(PreHomeScreen());
+                        await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: email.text, password: _password.text)
+                            .then((value) {
+                          Get.snackbar(
+                              'Login',
+                              'Login Successfully',
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: secondaryColors,
+                              colorText: quaternaryColors
+                          );
+                          Get.to(const HomeScreenN());
+                          });
+                        // Get.to(PreHomeScreen());
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           print('No user found for that email.');
                         } else if (e.code == 'wrong-password') {
                           print('Wrong password provided for that user.');
                         }
+                        print(e);
                       }
                     }
                   },
@@ -163,14 +176,12 @@ class _MyWidgetState extends State<logIn> {
                   minWidth: double.infinity,
                   height: 60,
                   shape: const Border(
-                    bottom: BorderSide(
-                        color: Color.fromARGB(255, 126, 125, 125)),
-                    top: BorderSide(
-                        color: Color.fromARGB(255, 126, 125, 125)),
-                    left: BorderSide(
-                        color: Color.fromARGB(255, 126, 125, 125)),
-                    right: BorderSide(
-                        color: Color.fromARGB(255, 126, 125, 125)),
+                    bottom:
+                        BorderSide(color: Color.fromARGB(255, 126, 125, 125)),
+                    top: BorderSide(color: Color.fromARGB(255, 126, 125, 125)),
+                    left: BorderSide(color: Color.fromARGB(255, 126, 125, 125)),
+                    right:
+                        BorderSide(color: Color.fromARGB(255, 126, 125, 125)),
                   ),
                   textColor: Colors.white,
                 ),

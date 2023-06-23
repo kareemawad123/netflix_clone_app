@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:netflix_clone_app/Model/constants.dart';
+import 'package:netflix_clone_app/View/Screens/getStartPage.dart';
 import 'package:netflix_clone_app/View/reusable_widgets/prehome_image.dart';
+
+import 'login.dart';
 
 class PreHomeScreen extends StatefulWidget {
   const PreHomeScreen({Key? key}) : super(key: key);
@@ -92,7 +97,9 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                             fontSize: 15),
                       )),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(logIn());
+                      },
                       style: TextButton.styleFrom(
                         // backgroundColor: Colors.red,
                         padding: EdgeInsets.zero,
@@ -135,7 +142,23 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                 width: width * 0.925,
                 height: height * 0.06,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                        backgroundColor: Colors.white,
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(0),
+                          ),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        isScrollControlled: true,
+                        isDismissible: true,
+                        builder: (BuildContext context) {
+                          return const BottomSheetExample();
+                        });
+
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: quaternaryColors,
                     foregroundColor: Colors.white,
