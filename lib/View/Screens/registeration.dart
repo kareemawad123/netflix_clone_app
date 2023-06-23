@@ -8,7 +8,7 @@ import 'package:netflix_clone_app/View/Screens/login.dart';
 import '../../Model/constants.dart';
 
 class Registration extends StatefulWidget {
-  Registration({super.key});
+  const Registration({super.key});
 
   @override
   State<Registration> createState() => _RegistrationState();
@@ -50,7 +50,7 @@ class _RegistrationState extends State<Registration> {
           ),
           TextButton(
               onPressed: () {
-                Get.to(logIn());
+                Get.to(Login());
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
@@ -71,35 +71,35 @@ class _RegistrationState extends State<Registration> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   "Ready to experience unlimited TV shows & movies?",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Create an account and we'll send you an email with everything you need to know about Netflix.",
                   style: TextStyle(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Email is required!';
                     } else if (value.length < 5) {
-                      InputDecoration(
+                      const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red)));
                       return 'Your Email should be between 5 and 60 characters';
@@ -108,7 +108,7 @@ class _RegistrationState extends State<Registration> {
                     }
                   },
                   cursorColor: const Color.fromARGB(255, 100, 100, 100),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -128,19 +128,19 @@ class _RegistrationState extends State<Registration> {
                   ),
                   controller: _emailController,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: _passwdVisible,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password is required!';
                     } else if (value.length < 6) {
-                      InputDecoration(
+                      const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red)));
                       return 'Your password should be between 6 and 60 characters';
@@ -149,7 +149,7 @@ class _RegistrationState extends State<Registration> {
                     }
                   },
                   cursorColor: const Color.fromARGB(255, 100, 100, 100),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -170,7 +170,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                   controller: _passwordController,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 CheckboxListTile(
@@ -181,9 +181,9 @@ class _RegistrationState extends State<Registration> {
                       checkBoxValue = value!;
                     });
                   },
-                  title: Text("Please do not email me Netflix special offers."),
+                  title: const Text("Please do not email me Netflix special offers."),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 MaterialButton(
@@ -197,8 +197,16 @@ class _RegistrationState extends State<Registration> {
                             .createUserWithEmailAndPassword(
                           email: _emailController.text,
                           password: _passwordController.text,
-                        );
-                        Get.to(logIn());
+                        ).then((value){
+                          Get.snackbar(
+                              'Welcome',
+                              'Sign up Successfully',
+                              snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: secondaryColors,
+                            colorText: quaternaryColors
+                          );
+                          Get.to(const Login());
+                        });
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           print('The password provided is too weak.');
@@ -210,14 +218,14 @@ class _RegistrationState extends State<Registration> {
                       }
                     }
                   },
-                  child: Text("CONTINUE"),
                   color: quaternaryColors,
                   hoverColor: Color.fromARGB(255, 223, 101, 93),
                   minWidth: double.infinity,
                   height: 60,
                   textColor: Colors.white,
+                  child: const Text("CONTINUE"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
               ],

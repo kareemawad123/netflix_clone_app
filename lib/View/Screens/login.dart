@@ -6,19 +6,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:netflix_clone_app/View/Screens/HelpScreen.dart';
+import 'package:netflix_clone_app/View/Screens/HomeScreenN.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
 import '../../Model/constants.dart';
 
-class logIn extends StatefulWidget {
-  logIn({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<logIn> createState() => _MyWidgetState();
+  State<Login> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<logIn> {
+class _MyWidgetState extends State<Login> {
   var email = TextEditingController();
   var _password = TextEditingController();
   var _passwdVisible = true;
@@ -138,22 +139,34 @@ class _MyWidgetState extends State<logIn> {
                   ),
                   controller: _password,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 MaterialButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
-                            email: email.text, password: _password.text);
-                        Get.to(PreHomeScreen());
+                        await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: email.text, password: _password.text)
+                            .then((value) {
+                          Get.snackbar(
+                              'Login',
+                              'Login Successfully',
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: secondaryColors,
+                              colorText: quaternaryColors
+                          );
+                          Get.to(const HomeScreenN());
+                          });
+                        // Get.to(PreHomeScreen());
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           print('No user found for that email.');
                         } else if (e.code == 'wrong-password') {
                           print('Wrong password provided for that user.');
                         }
+                        print(e);
                       }
                     }
                   },
