@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:netflix_clone_app/View/Screens/pre_home.dart';
 import 'package:netflix_clone_app/View/Screens/registeration.dart';
 
+import '../../Model/constants.dart';
+
 class BottomSheetExample extends StatelessWidget {
   const BottomSheetExample({super.key});
 
@@ -13,7 +15,7 @@ class BottomSheetExample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: false, actions: [
         IconButton(
-            onPressed: () => {Get.to(PreHomeScreen())},
+            onPressed: () => {Get.back()},
             icon: Icon(Icons.close)),
         SizedBox(
           width: 20,
@@ -98,7 +100,7 @@ class BottomSheetExample extends StatelessWidget {
                     }
                   },
                   child: Text("GET STARTED"),
-                  color: Colors.red,
+                  color: quaternaryColors,
                   hoverColor: Color.fromARGB(255, 223, 101, 93),
                   minWidth: double.infinity,
                   height: 60,
