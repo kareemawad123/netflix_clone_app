@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:netflix_clone_app/Model/constants.dart';
+import 'package:netflix_clone_app/View/reusable_widgets/prehome_image.dart';
 
 class PreHomeScreen extends StatefulWidget {
   const PreHomeScreen({Key? key}) : super(key: key);
@@ -25,6 +26,13 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
     super.initState();
   }
 
+  List<Color> colors = [
+    Colors.blue,
+    Colors.red,
+    Colors.amberAccent,
+    Colors.indigoAccent
+  ];
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -35,7 +43,7 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
         body: Stack(children: <Widget>[
           PageView.builder(
               itemCount: imgList.length,
-              pageSnapping: true,
+              pageSnapping: false,
               controller: _pageController,
               padEnds: false,
               onPageChanged: (page) {
@@ -44,11 +52,7 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                 });
               },
               itemBuilder: (context, pagePosition) {
-                return Container(
-                  height: height,
-                  width: double.infinity,
-                  color: primaryColors,
-                );
+                return  CustomPreHomeBG(color: colors[pagePosition],);
               }),
           // AppBar
           Positioned(
@@ -110,6 +114,7 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                       iconSize: 20,
                       icon: const Icon(
                         Icons.more_vert,
+                        color: Colors.white70,
                       )),
                 ],
               ),
@@ -127,8 +132,8 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
               bottom: 0,
               child: Container(
                 margin: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
-                width: width*0.925,
-                height: height*0.06,
+                width: width * 0.925,
+                height: height * 0.06,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: TextButton.styleFrom(
@@ -138,9 +143,10 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  child: const Text('Get Started',style: TextStyle(
-                    fontSize: 18
-                  ),),
+                  child: const Text(
+                    'Get Started',
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ))
         ]),
