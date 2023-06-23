@@ -14,10 +14,9 @@ class NetflixApis {
 
   static Future getMovieDB() async {
     final dio = Dio();
-    dio.options.queryParameters['api_key'] =
-    'a29b764d285577543b22f1b2ee8f8ff5';
+    dio.options.queryParameters['api_key'] = 'a29b764d285577543b22f1b2ee8f8ff5';
     final response =
-    await dio.get('https://api.themoviedb.org/3/movie/popular');
+        await dio.get('https://api.themoviedb.org/3/movie/popular');
     // print(response.data['results']);
     return response.data['results'];
   }

@@ -32,7 +32,8 @@ Widget customSliderCWCard({required var movie}) {
               decoration: const BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(5), topRight: Radius.circular(5))),
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5))),
               child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(5),
@@ -47,21 +48,17 @@ Widget customSliderCWCard({required var movie}) {
             ),
           ),
           Positioned(
-              child: Container(
-                height: 130,
-                width: 100,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin:  const Alignment(0.2, 0.2),
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      tertiaryColors.withAlpha(210)
-                    ],
-
-                  ),
+            child: Container(
+              height: 130,
+              width: 100,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: const Alignment(0.2, 0.2),
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, tertiaryColors.withAlpha(210)],
                 ),
               ),
+            ),
           ),
           Positioned(
               top: 35,
@@ -79,15 +76,18 @@ Widget customSliderCWCard({required var movie}) {
                   ),
                 ),
               )),
-           const Positioned(
-            bottom: 0,
+          const Positioned(
+              bottom: 0,
               child: SizedBox(
-                width: 100,
-                  child: Text('Episode 2',textAlign: TextAlign.center,style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                  ),)
-              ))
+                  width: 100,
+                  child: Text(
+                    'Episode 2',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                    ),
+                  )))
         ]),
         const SizedBox(
           width: 100,

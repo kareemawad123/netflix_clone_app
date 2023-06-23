@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:netflix_clone_app/View/Screens/Profiles.dart';
 import 'package:netflix_clone_app/View/Screens/bottom_nav_1.dart';
 import '../../Controller/api_get_controller.dart';
 import '../../Controller/movies_controller.dart';
@@ -56,10 +57,10 @@ class _HomeScreenNState extends State<HomeScreenN> {
           setState(() {
             _showNavBar = true;
             print(11);
-            if(0 == sC.controller.position.pixels || sC.controller.position.pixels < 50){
-
+            if (0 == sC.controller.position.pixels ||
+                sC.controller.position.pixels < 50) {
               sC.setTra();
-            }else{
+            } else {
               sC.setNotTra();
             }
           });
@@ -70,25 +71,23 @@ class _HomeScreenNState extends State<HomeScreenN> {
             _showNavBar = false;
             print(22);
           });
-          if(0 == sC.controller.position.pixels || sC.controller.position.pixels < 50){
-
+          if (0 == sC.controller.position.pixels ||
+              sC.controller.position.pixels < 50) {
             sC.setTra();
-          }else{
+          } else {
             sC.setNotTra();
           }
-
         }
       }
       // print(sC.controller.offset);
-      if(sC.controller.offset == 0){
+      if (sC.controller.offset == 0) {
         print('top');
         setState(() {
           isTop = true;
         });
         // sC.setTra();
         // print(sC.isTop.value);
-      }else{
-
+      } else {
         // sC.setNotTra();
         // print(sC.isTop.value);
         print('not TOp');
@@ -97,9 +96,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
           isTop = false;
         });
       }
-
     });
-
   }
 
   @override
@@ -119,7 +116,8 @@ class _HomeScreenNState extends State<HomeScreenN> {
         backgroundColor: tertiaryColors,
         appBar: AppBar(
           foregroundColor: Colors.white,
-          backgroundColor: isTop? Colors.transparent : Colors.black.withAlpha(alpha + 100),
+          backgroundColor:
+              isTop ? Colors.transparent : Colors.black.withAlpha(alpha + 100),
           leading: Container(
             margin: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
             child: SvgPicture.asset(
@@ -133,14 +131,16 @@ class _HomeScreenNState extends State<HomeScreenN> {
                 margin: const EdgeInsets.only(right: 10),
                 child: IconButton(
                     onPressed: () {
-                      print(movies.length);
+                      // print(movies.length);
                     },
                     icon: const Icon(
                       Icons.search_rounded,
                       size: 35,
                     ))),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(ProfileScreen());
+              },
               child: Container(
                 margin: const EdgeInsets.only(right: 10),
                 height: 25,
@@ -163,47 +163,47 @@ class _HomeScreenNState extends State<HomeScreenN> {
               data: Theme.of(context).copyWith(hintColor: Colors.white),
               child: _showNavBar
                   ? Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                height: 48.0,
-                alignment: Alignment.center,
-                color: Colors.black.withAlpha(alpha - 50),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'TV Shows',
-                              style: TextStyle(
-                                  fontSize: 15, color: Colors.white),
-                            ))),
-                    Expanded(
-                        child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Movies',
-                              style: TextStyle(
-                                  fontSize: 15, color: Colors.white),
-                            ))),
-                    Expanded(
-                        child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Categories',
-                              style: TextStyle(
-                                  fontSize: 15, color: Colors.white),
-                            ))),
-                  ],
-                ),
-              )
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      height: 48.0,
+                      alignment: Alignment.center,
+                      color: Colors.black.withAlpha(alpha - 50),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: TextButton(
+                                  onPressed: () {},
+                                  child: const Text(
+                                    'TV Shows',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  ))),
+                          Expanded(
+                              child: TextButton(
+                                  onPressed: () {},
+                                  child: const Text(
+                                    'Movies',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  ))),
+                          Expanded(
+                              child: TextButton(
+                                  onPressed: () {},
+                                  child: const Text(
+                                    'Categories',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  ))),
+                        ],
+                      ),
+                    )
                   : Container(),
             ),
           ),
         ),
         body: isLoad
             ? const Center(
-          child: CircularProgressIndicator(),
-        )
+                child: CircularProgressIndicator(),
+              )
             : _bottomNavBar.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey,
@@ -240,7 +240,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
     );
   }
 
-  static  final List<Widget> _bottomNavBar = <Widget>[
+  static final List<Widget> _bottomNavBar = <Widget>[
     const HomeIndex1(),
     const Text(
       'Index 1: Business',
