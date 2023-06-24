@@ -4,18 +4,23 @@ import 'package:flutter/material.dart';
 import '../../Model/constants.dart';
 
 Widget customSliderCard({required var movie}) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 5),
-    // height: 130,
-    width: 100,
-    decoration: BoxDecoration(
-        color: Colors.red, borderRadius: BorderRadius.circular(7)),
-    child: ClipRRect(
-        borderRadius: BorderRadius.circular(5.0),
-        child: Image.network(
-          'https://image.tmdb.org/t/p/w500/${movie['poster_path']}',
-          fit: BoxFit.cover,
-        )),
+  return InkWell(
+    onTap: (){
+
+    },
+    child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      // height: 130,
+      width: 100,
+      decoration: BoxDecoration(
+          color: Colors.red, borderRadius: BorderRadius.circular(7)),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(5.0),
+          child: Image.network(
+            'https://image.tmdb.org/t/p/w500/${movie['poster_path']}',
+            fit: BoxFit.cover,
+          )),
+    ),
   );
 }
 

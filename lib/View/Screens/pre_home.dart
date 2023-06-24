@@ -48,7 +48,7 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
     {
       'img':
       'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
-      'str1': "There's. a plan for every fan",
+      'str1': "There's a plan for every fan",
       'str2': 'Plans start at EGP70.',
     },
     {

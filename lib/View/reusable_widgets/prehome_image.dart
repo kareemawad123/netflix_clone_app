@@ -23,9 +23,12 @@ class CustomPreHomeBG extends StatelessWidget {
         children: [
           Container(
             height: height,
-            child: Image.network(
-              'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+            child: Image(
+              image: const NetworkImage(
+                'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+              ),
               fit: BoxFit.fill,
+              key: UniqueKey(),
             ),
           ),
           Container(

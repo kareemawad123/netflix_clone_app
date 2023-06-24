@@ -13,20 +13,23 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<SampleUsers> ProfileUsers = [
-      SampleUsers(userName: "Kareem", image: 'assets/images/user2.png'),
-      SampleUsers(userName: "Rashwan", image: 'assets/images/user1.png'),
-      SampleUsers(userName: "ELKateeb", image: 'assets/images/smile2.png'),
-      SampleUsers(userName: "Abdo", image: 'assets/images/user1.png'),
+    List<SampleUsers> profileUsers = [
+      SampleUsers(userName: "Kareem", image: 'assets/images/smile1.png'),
+      SampleUsers(userName: "Rashwan", image: 'assets/images/smile2.png'),
+      SampleUsers(userName: "ELKateeb", image: 'assets/images/smile3.png'),
+      SampleUsers(userName: "Abdo", image: 'assets/images/smile4.png'),
       SampleUsers(userName: "Kids", image: 'assets/images/kids.png'),
     ];
+
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             'Profiles & More',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -36,19 +39,19 @@ class ProfileScreen extends StatelessWidget {
             child: SingleChildScrollView(
                 child: Column(children: [
               Container(
-                height: 80,
+                height: height*0.1,
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return ActiveProfile(
-                        userName: ProfileUsers[index].userName,
-                        userImage: ProfileUsers[index].image);
+                    return activeProfile(
+                        userName: profileUsers[index].userName,
+                        userImage: profileUsers[index].image);
                   },
                   scrollDirection: Axis.horizontal,
-                  itemCount: ProfileUsers.length,
+                  itemCount: profileUsers.length,
                 ),
               ),
-              SizedBox(
-                height: 30,
+               SizedBox(
+                height: height*0.02,
               ),
               Container(
                 width: 250,
@@ -61,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
                           'assets/icons/pen.svg',
                           alignment: Alignment.center,
                         ),
-                        title: Text(
+                        title: const Text(
                           "Manage Profiles",
                           style: TextStyle(
                             color: Colors.grey,
@@ -69,12 +72,15 @@ class ProfileScreen extends StatelessWidget {
                           textAlign: TextAlign.left,
                         ))),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               MaterialButton(
                 onPressed: () => {},
-                child: ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const ListTile(
                     hoverColor: Colors.grey,
                     tileColor: Color.fromARGB(255, 20, 20, 20),
                     leading: Icon(
@@ -95,12 +101,12 @@ class ProfileScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               MaterialButton(
                 onPressed: () => {},
-                child: ListTile(
+                child: const ListTile(
                     hoverColor: Colors.grey,
                     tileColor: Color.fromARGB(255, 20, 20, 20),
                     leading: Icon(
@@ -121,12 +127,12 @@ class ProfileScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               MaterialButton(
                 onPressed: () => {},
-                child: ListTile(
+                child: const ListTile(
                     hoverColor: Colors.grey,
                     tileColor: Color.fromARGB(255, 20, 20, 20),
                     leading: Icon(
@@ -147,12 +153,12 @@ class ProfileScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               MaterialButton(
                 onPressed: () => {},
-                child: ListTile(
+                child: const ListTile(
                     hoverColor: Colors.grey,
                     tileColor: Color.fromARGB(255, 20, 20, 20),
                     leading: Icon(
@@ -173,12 +179,12 @@ class ProfileScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               MaterialButton(
                 onPressed: () => {Get.to(HelpScreen())},
-                child: ListTile(
+                child: const ListTile(
                     hoverColor: Colors.grey,
                     tileColor: Color.fromARGB(255, 20, 20, 20),
                     leading: Icon(
@@ -199,7 +205,7 @@ class ProfileScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               MaterialButton(
@@ -212,7 +218,7 @@ class ProfileScreen extends StatelessWidget {
                     Get.to(const PreHomeScreen());
                   });
                 },
-                child: Text(
+                child: const Text(
                   "Sign Out",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -224,30 +230,42 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget ActiveProfile({required String userName, required String userImage}) {
-  return TextButton(
-    onPressed: () => {Get.to(HomeScreenN())},
-    child: SingleChildScrollView(
-      child: Container(
-          width: 60,
-          child: Column(
-            children: [
-              Image(
-                image: AssetImage('${userImage}'),
-                width: 50,
-                height: 50,
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                " ${userName} ",
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                style: TextStyle(color: Colors.white, fontSize: 12),
-              ),
-            ],
-          )),
+Widget activeProfile({required String userName, required String userImage}) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 5),
+    child: TextButton(
+      onPressed: () => {Get.to(const HomeScreenN())},
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+                width: 55,
+                decoration: BoxDecoration(
+                    // color: Colors.amberAccent,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Image(
+                    image: AssetImage(userImage),
+                    fit: BoxFit.fill,
+                  ),
+                )),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              " $userName ",
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: const TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ],
+        ),
+      ),
     ),
   );
 }

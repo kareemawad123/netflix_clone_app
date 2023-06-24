@@ -76,10 +76,11 @@ class _HomeIndex1State extends State<HomeIndex1> {
                           width: width,
                           padding: EdgeInsets.zero,
                           margin: EdgeInsets.zero,
-                          child: const Image(
-                            image: NetworkImage(
+                          child: Image(
+                            image: const NetworkImage(
                               'https://images.justwatch.com/poster/301078631/s592/wednesday.webp',
                             ),
+                            key: UniqueKey(),
                           )),
                       Container(
                         height: height * 0.65,
