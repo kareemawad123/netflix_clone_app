@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:netflix_clone_app/View/Screens/movie_details.dart';
 
 import '../../Controller/movies_controller.dart';
 import '../../Model/constants.dart';
@@ -21,7 +23,7 @@ class _DownloadIndex3State extends State<DownloadIndex3> {
       isLoad = false;
     }
     setState(() {});
-    print(movies);
+    //print(movies);
   }
 
   @override
@@ -62,7 +64,7 @@ class _DownloadIndex3State extends State<DownloadIndex3> {
                           ),
                         ),
                         const Text(
-                          'Kareem',
+                          'Group 4',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -72,65 +74,71 @@ class _DownloadIndex3State extends State<DownloadIndex3> {
                     ),
                   ),
                   ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 15,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index){
-                      return Container(
-                        // color: Colors.greenAccent,
-                        margin: const EdgeInsets.only(bottom: 10),
-                        height: height * 0.11,
-                        width: width,
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(right: width * 0.02),
-                              width: width * 0.38,
-                              height: height * 0.13,
-                              // color: Colors.amberAccent,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5.0),
-                                child: Image.network(
-                                  'https://image.tmdb.org/t/p/w500/${movies[index]['backdrop_path']}',
-                                  fit: BoxFit.fill,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 20,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          // color: Colors.greenAccent,
+                          margin: const EdgeInsets.only(bottom: 10),
+                          height: height * 0.11,
+                          width: width,
+                          // child: InkWell(
+                          //   onTap: () => {
+                          //     Get.to(MovieDetailsScreen(movie: movies[index]))
+                          //   },
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(right: width * 0.02),
+                                width: width * 0.38,
+                                height: height * 0.13,
+                                // color: Colors.amberAccent,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  child: Image.network(
+                                    'https://image.tmdb.org/t/p/w500/${movies[index]['backdrop_path']}',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '${movies[index]['original_title']}',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: secondaryColors),
-                                  ),
-                                  const Text(
-                                    '18+ | 12 Episodes | 2.1 GB',
-                                    style: TextStyle(
-                                        fontSize: 12, color: Colors.white70),
-                                  ),
-                                ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${movies[index]['original_title']}',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: secondaryColors),
+                                    ),
+                                    const Text(
+                                      '18+ | 12 Episodes | 2.1 GB',
+                                      style: TextStyle(
+                                          fontSize: 12, color: Colors.white70),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                                margin: const EdgeInsets.only(right: 0),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Colors.white70,
-                                    size: 16,
-                                  ),
-                                )),
-                          ],
-                        ),
-                      );
-                    }
-
-                  ),
+                              Container(
+                                  margin: const EdgeInsets.only(right: 0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Get.to(MovieDetailsScreen(
+                                          movie: movies[index]));
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Colors.white70,
+                                      size: 16,
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          // ),
+                        );
+                      }),
                 ],
               ),
             ),

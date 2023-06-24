@@ -47,19 +47,19 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
     },
     {
       'img':
-      'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+          'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
       'str1': "There's a plan for every fan",
       'str2': 'Plans start at EGP70.',
     },
     {
       'img':
-      'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+          'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
       'str1': 'Cancel online anytime.',
       'str2': 'Join today, no reason to wait.',
     },
     {
       'img':
-      'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
+          'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2020/02/Netflix-Top-Ten_4.jpg',
       'str1': 'Watch everywhere.',
       'str2': 'Stream on your phone, tablet, laptop and TV.',
     },
@@ -75,7 +75,7 @@ class _PreHomeScreenState extends State<PreHomeScreen> {
         body: Stack(children: <Widget>[
           ExpandablePageView.builder(
             onPageChanged: (value) {
-              print(value);
+              //print(value);
 
               setState(() {
                 activePage = value;

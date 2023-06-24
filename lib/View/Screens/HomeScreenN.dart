@@ -37,7 +37,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
       isLoad = false;
     }
     setState(() {});
-    print(movies);
+    // //////print(movies);
   }
 
   void _onItemTapped(int index) {
@@ -58,7 +58,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
             !_showNavBar) {
           setState(() {
             _showNavBar = true;
-            // print(11);
+            // ////////print(11);
             if (0 == sC.controller.position.pixels ||
                 sC.controller.position.pixels < 50) {
               sC.setTra();
@@ -71,7 +71,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
             _showNavBar) {
           setState(() {
             _showNavBar = false;
-            // print(22);
+            // ////////print(22);
           });
           if (0 == sC.controller.position.pixels ||
               sC.controller.position.pixels < 50) {
@@ -81,18 +81,18 @@ class _HomeScreenNState extends State<HomeScreenN> {
           }
         }
       }
-      // print(sC.controller.offset);
+      // ////////print(sC.controller.offset);
       if (sC.controller.offset == 0) {
-        // print('top');
+        // //////print('top');
         setState(() {
           isTop = true;
         });
         // sC.setTra();
-        // print(sC.isTop.value);
+        // //////print(sC.isTop.value);
       } else {
         // sC.setNotTra();
-        // print(sC.isTop.value);
-        // print('not TOp');
+        // //////print(sC.isTop.value);
+        // //////print('not TOp');
 
         setState(() {
           isTop = false;
@@ -139,7 +139,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
                 margin: const EdgeInsets.only(right: 10),
                 child: IconButton(
                     onPressed: () {
-                      print(movies.length);
+                      // //////print(movies.length);
                     },
                     icon: const Icon(
                       Icons.search_rounded,
@@ -147,7 +147,8 @@ class _HomeScreenNState extends State<HomeScreenN> {
                     ))),
             InkWell(
               onTap: () {
-                Get.to(const ProfileScreen(),transition: Transition.rightToLeftWithFade);
+                Get.to(const ProfileScreen(),
+                    transition: Transition.rightToLeftWithFade);
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 10),

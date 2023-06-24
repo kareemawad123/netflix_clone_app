@@ -29,11 +29,10 @@ class _ChoseUserScreenState extends State<ChoseUserScreen> {
             width: width * 0.25,
           ),
           actions: [
-
             Container(
               margin: const EdgeInsets.only(right: 10),
               child: InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: SvgPicture.asset(
                   'assets/icons/pen.svg',
                   width: width * 0.065,
@@ -49,26 +48,38 @@ class _ChoseUserScreenState extends State<ChoseUserScreen> {
             children: [
               const Text(
                 "Who's Watching?",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white
-                ),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               Container(
                 height: height * 0.6,
                 width: width * 0.75,
                 child: GridView.count(
                   primary: false,
-                  padding: const EdgeInsets.only(left: 10,right: 10, top: 25),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 25),
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 25,
                   crossAxisCount: 2,
                   children: <Widget>[
-                    customUser(name: 'Kareem', img: 'assets/images/user1.png', context: context),
-                    customUser(name: 'ASSAS', img: 'assets/images/user2.png', context: context),
-                    customUser(name: 'K', img: 'assets/images/user1.png', context: context),
-                    customUser(name: 'K', img: 'assets/images/user1.png', context: context),
-                    customUser(name: 'Kids', img: 'assets/images/kids.png', context: context),
+                    customUser(
+                        name: 'Kareem',
+                        img: 'assets/images/user1.png',
+                        context: context),
+                    customUser(
+                        name: 'ASSAS',
+                        img: 'assets/images/user2.png',
+                        context: context),
+                    customUser(
+                        name: 'K',
+                        img: 'assets/images/user1.png',
+                        context: context),
+                    customUser(
+                        name: 'K',
+                        img: 'assets/images/user1.png',
+                        context: context),
+                    customUser(
+                        name: 'Kids',
+                        img: 'assets/images/kids.png',
+                        context: context),
                   ],
                 ),
               ),
@@ -80,18 +91,21 @@ class _ChoseUserScreenState extends State<ChoseUserScreen> {
   }
 }
 
-Widget customUser({required String name, required String img, required BuildContext context}) {
+Widget customUser(
+    {required String name,
+    required String img,
+    required BuildContext context}) {
   return InkWell(
-    onTap: (){
-      print('Tap');
-      Get.to(const HomeScreenN(),transition: Transition.fade);
+    onTap: () {
+      // print('Tap');
+      Get.to(const HomeScreenN(), transition: Transition.fade);
     },
     child: Container(
       // color: Colors.green,
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height*0.125,
+            height: MediaQuery.of(context).size.height * 0.125,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.asset(

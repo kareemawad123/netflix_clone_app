@@ -9,7 +9,7 @@ class NetflixApis {
         'netflix-unofficial.p.rapidapi.com';
     final response =
         await dio.get('https://netflix-unofficial.p.rapidapi.com/api/genres');
-    print(response.data);
+    // print(response.data);
   }
 
   static Future getMovieDB() async {

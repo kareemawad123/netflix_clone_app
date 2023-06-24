@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const HomeScreen(),
-      home: const PreHomeScreen(),
-      // home: const HomeScreenN(),
+      // home: const PreHomeScreen(),
+      home: const HomeScreenN(),
     );
   }
 }

@@ -36,7 +36,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
       isLoad = false;
     }
     setState(() {});
-    print(movies);
+    //print(movies);
   }
 
   final SController sC = Get.find();
@@ -178,7 +178,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
                 ),
                 customCWSlider(profileName: 'Kareem'),
                 ListView.builder(
-                  padding: EdgeInsets.zero,
+                    padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: sliderTitles.length,
                     shrinkWrap: true,
@@ -222,7 +222,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
             child: ListView.builder(
               itemCount: movies.length,
               itemBuilder: (context, index) {
-                // print(movies[index]);
+                // //print(movies[index]);
                 return customSliderCard(movie: movies[index]);
               },
               // This next line does the trick.
@@ -262,7 +262,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
             child: ListView.builder(
               itemCount: movies.length,
               itemBuilder: (context, index) {
-                // print(movies[index]);
+                // //print(movies[index]);
                 return customSliderCWCard(movie: movies[index]);
               },
               // This next line does the trick.
