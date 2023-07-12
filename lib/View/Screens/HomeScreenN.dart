@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:netflix_clone_app/View/Screens/New&Hot.dart';
 import 'package:netflix_clone_app/View/Screens/bottom_nav_1.dart';
 import 'package:netflix_clone_app/View/Screens/download.dart';
 import '../../Controller/api_get_controller.dart';
@@ -129,10 +130,20 @@ class _HomeScreenNState extends State<HomeScreenN> {
                     'assets/icons/Netflix_N_logo.svg',
                     alignment: Alignment.topLeft,
                   )
-                : const Text(
-                    'Downloads',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                : _selectedIndex == 3
+                    ? const Text(
+                        'Downloads',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    : _selectedIndex == 2
+                        ? const Text(
+                            'New & Hot',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        : const Text(
+                            'Games',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
           ),
           actions: [
             Container(
@@ -206,48 +217,84 @@ class _HomeScreenNState extends State<HomeScreenN> {
                             ],
                           ),
                         )
-                      : Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          height: 48.0,
-                          alignment: Alignment.center,
-                          color: Colors.black.withAlpha(alpha - 50),
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: const Row(
-                                  children: [
-                                    Icon(
-                                      Icons.settings,
-                                      color: Colors.white70,
+                      : _selectedIndex == 3
+                          ? Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              height: 48.0,
+                              alignment: Alignment.center,
+                              color: Colors.black.withAlpha(alpha - 50),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.settings,
+                                          color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
+                                        Text(
+                                          'Smart Downloads',
+                                          style: TextStyle(
+                                            color: Colors.white70,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      width: 7,
-                                    ),
-                                    Text(
-                                      'Smart Downloads',
-                                      style: TextStyle(
-                                        color: Colors.white70,
+                                  ),
+                                  Expanded(child: Container()),
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 15),
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: SvgPicture.asset(
+                                        'assets/icons/pen.svg',
+                                        height: 20,
+                                        color: secondaryColors,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(child: Container()),
-                              Container(
-                                margin: const EdgeInsets.only(right: 15),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: SvgPicture.asset(
-                                    'assets/icons/pen.svg',
-                                    height: 20,
-                                    color: secondaryColors,
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                        )
+                            )
+                          : _selectedIndex == 2
+                              ? Container(
+                                  // color: Colors.white70,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        buttonNavSlider(
+                                            context: context,
+                                            name: 'Comming Soon',
+                                            state: true),
+                                        buttonNavSlider(
+                                            context: context,
+                                            name: "Everyone's Watching",
+                                            state: false),
+                                        buttonNavSlider(
+                                            context: context,
+                                            name: 'Games',
+                                            state: false),
+                                        buttonNavSlider(
+                                            context: context,
+                                            name: 'Top 10 TV Shows',
+                                            state: false),
+                                        buttonNavSlider(
+                                            context: context,
+                                            name: 'Top 10 Movies',
+                                            state: false),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : Container()
                   : Container(),
             ),
           ),
@@ -298,10 +345,28 @@ class _HomeScreenNState extends State<HomeScreenN> {
       'Index 1: Business',
       style: TextStyle(color: Colors.white),
     ),
-    const Text(
-      'Index 2: School',
-      style: TextStyle(color: Colors.white),
-    ),
+    const NewHotScreen(),
     const DownloadIndex3(),
   ];
+
+  Widget buttonNavSlider(
+      {required BuildContext context,
+      required String name,
+      required bool state}) {
+    return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 5),
+        height: MediaQuery.of(context).size.height * 0.04,
+        child: ElevatedButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+                backgroundColor: state ? Colors.white : Colors.transparent,
+                padding: const EdgeInsets.symmetric(horizontal: 15)),
+            child: Text(
+              name,
+              style: TextStyle(
+                  color: state ? Colors.black : Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            )));
+  }
 }
