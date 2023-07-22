@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:netflix_clone_app/View/Screens/New&Hot.dart';
+import 'package:netflix_clone_app/View/Screens/Search.dart';
 import 'package:netflix_clone_app/View/Screens/bottom_nav_1.dart';
 import 'package:netflix_clone_app/View/Screens/download.dart';
 import '../../Controller/api_get_controller.dart';
@@ -150,7 +151,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
                 margin: const EdgeInsets.only(right: 10),
                 child: IconButton(
                     onPressed: () {
-                      // //////print(movies.length);
+                      Get.to(const SearchScreen(),transition: Transition.rightToLeft);
                     },
                     icon: const Icon(
                       Icons.search_rounded,
