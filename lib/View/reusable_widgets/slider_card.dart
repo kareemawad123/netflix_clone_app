@@ -28,6 +28,30 @@ Widget customSliderCard({required var movie}) {
     ),
   );
 }
+Widget customSliderCard2({required var movie}) {
+  return InkWell(
+    onTap: () {
+      // print(movie);
+      Get.to(MovieDetailsScreen(
+        movie: movie,
+      ));
+    },
+    child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      // height: 130,
+      width: 100,
+      decoration: BoxDecoration(
+          color: Colors.red, borderRadius: BorderRadius.circular(7)),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(5.0),
+          child: Image.network(
+            movie['link'],
+            height: 130,
+            fit: BoxFit.fitHeight,
+          )),
+    ),
+  );
+}
 
 Widget customSliderCWCard({required var movie}) {
   return InkWell(
@@ -52,7 +76,7 @@ Widget customSliderCWCard({required var movie}) {
                         bottomLeft: Radius.zero,
                         bottomRight: Radius.zero),
                     child: Image.network(
-                      'https://image.tmdb.org/t/p/w500/${movie['poster_path']}',
+                      movie['link'],
                       height: 130,
                       fit: BoxFit.cover,
                     )),

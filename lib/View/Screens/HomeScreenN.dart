@@ -131,20 +131,17 @@ class _HomeScreenNState extends State<HomeScreenN> {
                     'assets/icons/Netflix_N_logo.svg',
                     alignment: Alignment.topLeft,
                   )
-                : _selectedIndex == 3
+                : _selectedIndex == 2
                     ? const Text(
                         'Downloads',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       )
-                    : _selectedIndex == 2
+                    : _selectedIndex == 1
                         ? const Text(
                             'New & Hot',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
-                        : const Text(
-                            'Games',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                        : Container(),
           ),
           actions: [
             Container(
@@ -318,11 +315,6 @@ class _HomeScreenNState extends State<HomeScreenN> {
               backgroundColor: tertiaryColors,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.sports_esports_outlined),
-              label: 'Games',
-              backgroundColor: tertiaryColors,
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.video_collection_outlined),
               label: 'New & Host',
               backgroundColor: tertiaryColors,
@@ -334,6 +326,7 @@ class _HomeScreenNState extends State<HomeScreenN> {
             ),
           ],
           currentIndex: _selectedIndex,
+          backgroundColor: tertiaryColors,
           onTap: _onItemTapped,
         ),
       ),
@@ -342,10 +335,6 @@ class _HomeScreenNState extends State<HomeScreenN> {
 
   static final List<Widget> _bottomNavBar = <Widget>[
     const HomeIndex1(),
-    const Text(
-      'Index 1: Business',
-      style: TextStyle(color: Colors.white),
-    ),
     const NewHotScreen(),
     const DownloadIndex3(),
   ];

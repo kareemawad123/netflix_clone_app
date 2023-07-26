@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import '../../Controller/api_get_controller.dart';
 import '../../Controller/movies_controller.dart';
 import '../../Controller/scroll_controller.dart';
+import '../../Controller/search_controller.dart';
 import '../../Model/constants.dart';
 import '../reusable_widgets/geners_text.dart';
 import '../reusable_widgets/slider_card.dart';
@@ -30,10 +32,20 @@ class _HomeIndex1State extends State<HomeIndex1> {
     'Only on Netflix',
   ];
 
+  // void getMovies() async {
+  //   movies = await MoviesCore.setMovies();
+  //   if (movies.isNotEmpty) {
+  //     isLoad = false;
+  //   }
+  //   setState(() {});
+  //   //print(movies);
+  // }
   void getMovies() async {
-    movies = await MoviesCore.setMovies();
+    movies = await SearchAPI.getData();
     if (movies.isNotEmpty) {
       isLoad = false;
+      // print('movies');
+      // print(movies);
     }
     setState(() {});
     //print(movies);
@@ -43,8 +55,9 @@ class _HomeIndex1State extends State<HomeIndex1> {
 
   @override
   void initState() {
-    super.initState();
     getMovies();
+    super.initState();
+
   }
 
   @override
@@ -176,16 +189,20 @@ class _HomeIndex1State extends State<HomeIndex1> {
                     ],
                   ),
                 ),
-                customCWSlider(profileName: 'Kareem'),
+                // customSlider(profileName: 'Kareem'),
+                customCWSliderAPI(profileName: 'Kareem', count: 12),
                 ListView.builder(
                     padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: sliderTitles.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return customSlider(title: sliderTitles[index]);
+                      return customSliderAPI(title: sliderTitles[index]);
                     }),
-                // customSlider(),
+                // customSliderAPI(title: 'Kareem'),
+                // customSlider(title: 'ttttttt'),
+                // customSlider(title: 'ttttttt'),
+                // customSlider(title: 'ttttttt'),
                 // customSlider(),
                 // customSlider(),
                 // customSlider(),
@@ -194,8 +211,7 @@ class _HomeIndex1State extends State<HomeIndex1> {
             ),
           );
   }
-
-  Widget customSlider({required String title}) {
+  Widget customSliderAPI({required String title}) {
     return Container(
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
       // height: 150,
@@ -220,21 +236,17 @@ class _HomeIndex1State extends State<HomeIndex1> {
             margin: const EdgeInsets.only(top: 3, left: 5),
             height: 140,
             child: ListView.builder(
-              itemCount: movies.length,
-              itemBuilder: (context, index) {
-                // //print(movies[index]);
-                return customSliderCard(movie: movies[index]);
-              },
-              // This next line does the trick.
-              scrollDirection: Axis.horizontal,
-            ),
+              itemCount: 18,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index){
+              return customSliderCard2(movie: movies[index]);
+            }),
           ),
         ],
       ),
     );
   }
-
-  Widget customCWSlider({required String profileName}) {
+  Widget customCWSliderAPI({required String profileName, required int count}) {
     return Container(
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
       // height: 150,
@@ -260,17 +272,124 @@ class _HomeIndex1State extends State<HomeIndex1> {
             height: 180,
             // color: Colors.grey,
             child: ListView.builder(
-              itemCount: movies.length,
-              itemBuilder: (context, index) {
-                // //print(movies[index]);
-                return customSliderCWCard(movie: movies[index]);
-              },
-              // This next line does the trick.
-              scrollDirection: Axis.horizontal,
-            ),
+                itemCount: count,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index){
+                  return customSliderCWCard(movie: movies[index]);
+                }),
           ),
         ],
       ),
     );
   }
+
+  // Widget customSlider({required String title}) {
+  //   return Container(
+  //     padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+  //     // height: 150,
+  //     // color: Colors.grey,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.start,
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         Container(
+  //           margin: const EdgeInsets.only(left: 10),
+  //           child: Text(
+  //             title,
+  //             textAlign: TextAlign.start,
+  //             style: const TextStyle(
+  //               color: Colors.white,
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.bold,
+  //             ),
+  //           ),
+  //         ),
+  //         Container(
+  //           margin: const EdgeInsets.only(top: 3, left: 5),
+  //           height: 140,
+  //           child: StreamBuilder<QuerySnapshot>(
+  //               stream: FirebaseFirestore.instance
+  //                   .collection('NetflixClone')
+  //                   .snapshots(),
+  //               builder: (BuildContext context,
+  //                   AsyncSnapshot<QuerySnapshot> snapshot) {
+  //                 if (snapshot.hasError) {
+  //                   return const Text('Something went wrong');
+  //                 }
+  //                 if (snapshot.connectionState == ConnectionState.waiting) {
+  //                   return const Center(child: CircularProgressIndicator());
+  //                 }
+  //                 return SingleChildScrollView(
+  //                   scrollDirection: Axis.horizontal,
+  //                   child: Row(
+  //                     // scrollDirection: Axis.horizontal,
+  //                     children:
+  //                     snapshot.data!.docs.map((DocumentSnapshot document) {
+  //                       Map<String, dynamic> data =
+  //                       document.data()! as Map<String, dynamic>;
+  //                       return customSliderCard2(movie: data);
+  //                     }).toList(),
+  //                   ),
+  //                 );
+  //               },),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+  //
+  // Widget customCWSlider({required String profileName}) {
+  //   return Container(
+  //     padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+  //     // height: 150,
+  //     // color: Colors.grey,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.start,
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         Container(
+  //           margin: const EdgeInsets.only(left: 10),
+  //           child: Text(
+  //             'Continue Watching for $profileName',
+  //             textAlign: TextAlign.start,
+  //             style: const TextStyle(
+  //               color: Colors.white,
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.bold,
+  //             ),
+  //           ),
+  //         ),
+  //         Container(
+  //           margin: const EdgeInsets.only(top: 3, left: 5),
+  //           height: 180,
+  //           // color: Colors.grey,
+  //           child: StreamBuilder<QuerySnapshot>(
+  //             stream: FirebaseFirestore.instance
+  //                 .collection('NetflixClone').where('type', isEqualTo:'Movies')
+  //                 .snapshots(),
+  //             builder: (BuildContext context,
+  //                 AsyncSnapshot<QuerySnapshot> snapshot) {
+  //               if (snapshot.hasError) {
+  //                 return const Text('Something went wrong');
+  //               }
+  //               if (snapshot.connectionState == ConnectionState.waiting) {
+  //                 return const Center(child: CircularProgressIndicator());
+  //               }
+  //               return SingleChildScrollView(
+  //                 scrollDirection: Axis.horizontal,
+  //                 child: Row(
+  //                   children:
+  //                   snapshot.data!.docs.map((DocumentSnapshot document) {
+  //                     Map<String, dynamic> data =
+  //                     document.data()! as Map<String, dynamic>;
+  //                     return customSliderCWCard(movie: data);
+  //                   }).toList(),
+  //                 ),
+  //               );
+  //             },),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

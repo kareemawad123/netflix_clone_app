@@ -7,7 +7,7 @@ import 'package:netflix_clone_app/View/Screens/Profiles.dart';
 import 'package:netflix_clone_app/View/Screens/download.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
-  MovieDetailsScreen({Key? key, this.movie}) : super(key: key);
+  const MovieDetailsScreen({Key? key, this.movie}) : super(key: key);
   final dynamic movie;
 
   @override
@@ -70,25 +70,22 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     padding: EdgeInsets.zero,
                     child: ClipRRect(
                         child: Image.network(
-                      'https://image.tmdb.org/t/p/w500/${widget.movie['poster_path']}',
-                      fit: BoxFit.fill,
+                      widget.movie['link'],
+                      fit: BoxFit.cover,
                     )),
                   ),
                 ),
                 Positioned(
                     top: (height * 0.4) * 0.4,
-                    left: width * 0.45,
+                    left: width*0.4,
                     child: SizedBox(
                       // width: width * 0.5,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.play_circle_outline,
-                            size: 50,
-                            color: Colors.white,
-                          ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.play_circle_outline,
+                          size: 50,
+                          color: Colors.white,
                         ),
                       ),
                     )),
@@ -104,7 +101,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${widget.movie['original_title']}',
+                      '${widget.movie['name']}',
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: secondaryColors),
@@ -113,8 +110,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       height: 5,
                     ),
                     Text(
-                      widget.movie['release_date'] +
-                          ' | 18+ | 12 Episodes | 2.1 GB',
+                      '19-10-2023'
+                      ' | 18+ | 12 Episodes | 2.1 GB',
                       textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 12, color: Colors.white70),
                     ),
@@ -157,7 +154,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       height: 5,
                     ),
                     Text(
-                      widget.movie['overview'],
+                      widget.movie['description'],
                       textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 12, color: Colors.white70),
                     ),
